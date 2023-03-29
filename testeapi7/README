@@ -1,0 +1,12 @@
+- Testes automatizados para a API com PHPUnit 9.6
+- A classes de testes fica em tests/ApiTest.php
+- Nela foram implementados métodos para testar todas as rotas da API
+
+Instruções:
+
+- A API deverá estar rodando na porta 8000
+- Acessar esse diretório via terminal
+- composer install
+- no Windows => .\vendor\bin\phpunit
+- No Linux => ./vendor/bin/phpunit
+- Obs.: a sequencia de ids a serem inseridos e apagados foi feita com base no import inicial do banco sql postgre

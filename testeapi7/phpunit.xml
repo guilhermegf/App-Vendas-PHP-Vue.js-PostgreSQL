@@ -1,0 +1,8 @@
+<phpunit>
+    <testsuites>
+        <testsuite name="API Tests">
+            <directory>./tests</directory>
+            <file>./tests/Apitest.php</file>
+        </testsuite>
+    </testsuites>
+</phpunit>

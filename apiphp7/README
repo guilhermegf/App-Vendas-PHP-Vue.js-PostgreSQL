@@ -1,0 +1,394 @@
+Rode a API com:
+
+php -S localhost:8000
+
+necessário antes editar o arquivo Singleon.php colocando as informações de conexão com o banco
+
+Documentação da API
+
+Esta API é responsável por gerenciar informações relacionadas a produtos, vendas e seus respectivos tipos.
+
+Requisições permitidas
+
+GET: busca dados.
+POST: insere novos dados.
+PUT: atualiza dados existentes.
+DELETE: exclui dados existentes.
+Cabeçalhos permitidos
+
+Access-Control-Allow-Origin: Permite solicitações de qualquer origem.
+Access-Control-Allow-Methods: Permite solicitações com qualquer método HTTP.
+Access-Control-Allow-Headers: Permite solicitações com qualquer cabeçalho.
+Recursos disponíveis
+
+/tipos_produto
+
+GET /tipos_produto: retorna todos os tipos de produto existentes no banco de dados.
+GET /tipos_produto/{id}: retorna um tipo de produto específico pelo seu ID.
+POST /tipos_produto: insere um novo tipo de produto no banco de dados.
+PUT /tipos_produto/{id}: atualiza um tipo de produto existente pelo seu ID.
+DELETE /tipos_produto/{id}: exclui um tipo de produto existente pelo seu ID.
+GET /temprodutos/{id}: retorna os produtos associados a um tipo de produto pelo ID do tipo de produto.
+
+/produtos
+
+GET /produtos: retorna todos os produtos existentes no banco de dados.
+GET /produtos/{id}: retorna um produto específico pelo seu ID.
+POST /produtos: insere um novo produto no banco de dados.
+PUT /produtos/{id}: atualiza um produto existente pelo seu ID.
+DELETE /produtos/{id}: exclui um produto existente pelo seu ID.
+
+GET
+
+/vendas
+
+GET /vendas: retorna todas as vendas existentes no banco de dados.
+GET /vendas/{id}: retorna uma venda específica pelo seu ID.
+POST /vendas: insere uma nova venda no banco de dados.
+PUT /vendas/{id}: atualiza uma venda existente pelo seu ID.
+DELETE /vendas/{id}: exclui uma venda existente pelo seu ID.
+
+/itens_venda
+
+GET /itens_venda/{id}: retorna um item de venda específico pelo seu ID.
+GET /itens_venda_venda_id/{id}: retorna todos os itens de uma venda pelo ID da venda.
+POST /itens_venda: insere um novo item de venda no banco de dados.
+PUT /itens_venda/{id}: atualiza um item de venda existente pelo seu ID.
+DELETE /itens_venda/{id}: exclui um item de venda existente pelo seu ID.
+DELETE /itens_venda_venda_id/{id}: excluir todos os itens de uma venda.
+
+Formato de dados
+
+Os dados são transmitidos e recebidos no formato JSON.
+As informações a serem enviadas no corpo das requisições devem estar em formato JSON válido.
+As informações retornadas pela API também estão no formato JSON.
+
+Exemplos de uso
+
+Para buscar todos os tipos de produto:
+GET /tipos_produto
+O retorno dessa requisição GET é um array de objetos JSON, cada um representando um tipo de produto disponível. Cada objeto contém as seguintes informações:
+"id": um número inteiro que identifica exclusivamente cada tipo de produto.
+"nome": uma string com o nome do tipo de produto.
+"imposto_percentual": uma string representando a taxa de imposto percentual associada ao tipo de produto.
+
+"id": um número inteiro que identifica exclusivamente cada tipo de produto.
+"nome": uma string com o nome do tipo de produto.
+"imposto_percentual": uma string representando a taxa de imposto percentual associada ao tipo de produto.
+
+Para buscar um tipo de produto específico:
+GET /tipos_produto/1
+O retorno dessa requisição GET é um objeto JSON que representa um tipo de produto específico. O objeto contém as seguintes informações:
+"id": um número inteiro que identifica exclusivamente o tipo de produto.
+"nome": uma string com o nome do tipo de produto.
+"imposto_percentual": uma string representando a taxa de imposto percentual associada ao tipo de produto.
+
+Para inserir um novo tipo de produto:
+POST /tipos_produto
+Essa requisição POST insere um novo tipo de produto no sistema. O corpo da requisição é um objeto JSON que contém as informações do novo tipo de produto a ser criado, incluindo:
+"nome": uma string com o nome do novo tipo de produto.
+"imposto_percentual": um número inteiro ou decimal representando a taxa de imposto percentual associada ao novo tipo de produto.
+json exemplo
+{
+    "nome": "Eletrônicos",
+    "imposto_percentual": 10
+}
+
+Para atualizar um tipo de produto existente:
+PUT /tipos_produto/1
+Essa requisição PUT atualiza um tipo de produto existente no sistema com o id 1. O corpo da requisição é um objeto JSON que contém as informações atualizadas do tipo de produto, incluindo:
+"nome": uma string com o novo nome do tipo de produto.
+"imposto_percentual": um número inteiro ou decimal representando a nova taxa de imposto percentual associada ao tipo de produto.
+json exemplo
+{
+    "nome": "Alimentos",
+    "imposto_percentual": 15
+}
+
+Para excluir um tipo de produto existente:
+DELETE /tipos_produto/1
+O número 1 no final da URL representa o id do tipo de produto que deve ser excluído.
+
+Para buscar todos os produtos:
+GET /produtos
+Essa requisição GET retorna todos os produtos existentes no sistema. O corpo da resposta é uma lista de objetos JSON, onde cada objeto representa um produto. Cada objeto contém as seguintes informações:
+"id": um número inteiro que representa o identificador único do produto.
+"nome": uma string com o nome do produto.
+"descricao": uma string com uma descrição breve do produto.
+"marca": uma string com o nome da marca do produto.
+"quantidade_estoque": um número inteiro que representa a quantidade de unidades em estoque do produto.
+"preco": um número decimal que representa o preço do produto.
+"tipo_id": um número inteiro que representa o identificador único do tipo de produto associado a este produto.
+"nome_tipo_produto": uma string com o nome do tipo de produto associado a este produto.
+json exemplo
+[
+    {
+        "id": 2,
+        "nome": "Notebook",
+        "descricao": "Computador portátil com processador Intel Core i5 e tela de 14 polegadas",
+        "marca": "Dell",
+        "quantidade_estoque": 20,
+        "preco": "3499.99",
+        "tipo_id": 1,
+        "nome_tipo_produto": "Eletrônicos"
+    },
+    {
+        "id": 3,
+        "nome": "Camiseta",
+        "descricao": "Camiseta de algodão com estampa de flores",
+        "marca": "Adidas",
+        "quantidade_estoque": 100,
+        "preco": "49.99",
+        "tipo_id": 2,
+        "nome_tipo_produto": "Roupas"
+    },
+    
+]
+
+Para buscar um produto específico:
+GET /produtos/1
+Essa requisição GET retorna as informações de um produto específico, identificado pelo seu ID. O corpo da resposta é um objeto JSON com as seguintes informações:
+"id": um número inteiro que representa o identificador único do produto.
+"nome": uma string com o nome do produto.
+"descricao": uma string com uma descrição breve do produto.
+"marca": uma string com o nome da marca do produto.
+"quantidade_estoque": um número inteiro que representa a quantidade de unidades em estoque do produto.
+"preco": um número decimal que representa o preço do produto.
+"tipo_id": um número inteiro que representa o identificador único do tipo de produto associado a este produto.
+"nome_tipo_produto": uma string com o nome do tipo de produto associado a este produto.
+json exemplo
+{
+    "id": 2,
+    "nome": "Notebook",
+    "descricao": "Computador portátil com processador Intel Core i5 e tela de 14 polegadas",
+    "marca": "Dell",
+    "quantidade_estoque": 20,
+    "preco": "3499.99",
+    "tipo_id": 1,
+    "nome_tipo_produto": "Eletrônicos"
+}
+
+Para inserir um novo produto:
+POST /produtos
+Essa requisição POST é utilizada para inserir um novo produto na base de dados. O corpo da requisição é um objeto JSON com as seguintes informações:
+"nome": uma string com o nome do produto.
+"descricao": uma string com uma descrição breve do produto.
+"preco": um número decimal que representa o preço do produto.
+"tipo_id": um número inteiro que representa o identificador único do tipo de produto associado a este produto.
+json exemplo
+{
+    "nome": "Notebook",
+    "descricao": "Notebook Dell XPS 13",
+    "preco": 6999.99,
+    "tipo_id": 1
+}
+
+Para atualizar um produto existente:
+PUT /produtos/1
+Essa requisição PUT é utilizada para atualizar um produto existente na base de dados. O parâmetro "1" na URL representa o identificador único do produto que será atualizado. O corpo da requisição é um objeto JSON com as informações atualizadas do produto:
+"nome": uma string com o nome do produto atualizado.
+"descricao": uma string com a descrição atualizada do produto.
+"preco": um número decimal que representa o preço atualizado do produto.
+"tipo_id": um número inteiro que representa o identificador único do tipo de produto atualizado associado a este produto.
+json exemplo
+{
+    "nome": "Notebook",
+    "descricao": "Notebook Dell XPS 13",
+    "preco": 7999.99,
+    "tipo_id": 1
+}
+
+Para excluir um produto existente:
+Ao excluir um produto existente, a API deve retornar um status HTTP 200 No Content, indicando que a operação foi realizada com sucesso e não há conteúdo para ser retornado.
+DELETE /produtos/1
+
+Para buscar todas as vendas:
+GET /vendas
+A requisição GET /vendas retorna uma lista de todas as vendas registradas no sistema, com as seguintes informações para cada uma:
+id: identificador único da venda;
+data_hora: data e hora em que a venda foi registrada;
+valor_total: valor total da venda, incluindo impostos;
+valor_impostos: valor total dos impostos cobrados na venda.
+json exemplo
+[
+    {
+        "id": 2,
+        "data_hora": "2023-03-27 07:40:18.579659",
+        "valor_total": "3619.95",
+        "valor_impostos": "355.72"
+    },
+    {
+        "id": 4,
+        "data_hora": "2023-03-27 07:41:13.49014",
+        "valor_total": "100.00",
+        "valor_impostos": "15.00"
+    },
+    {
+        "id": 3,
+        "data_hora": "2023-03-27 07:41:13.674455",
+        "valor_total": "100.00",
+        "valor_impostos": "15.00"
+    }
+]
+
+Para buscar uma venda específica:
+GET /vendas/2
+Retorna os dados de uma venda específica, identificada pelo ID. O objeto retornado contém as seguintes propriedades:
+id: o ID da venda
+data_hora: a data e hora em que a venda foi realizada
+valor_total: o valor total da venda, incluindo impostos
+valor_impostos: o valor total dos impostos cobrados na venda.
+json exemplo
+{
+    "id": 2,
+    "data_hora": "2023-03-27 07:40:18.579659",
+    "valor_total": "3619.95",
+    "valor_impostos": "355.72"
+}
+
+Para inserir uma nova venda:
+POST /vendas
+requisição HTTP do tipo POST para a rota /vendas, com um corpo de mensagem JSON contendo as informações de uma nova venda. As informações incluídas na mensagem de requisição incluem:
+valor_total: o valor total da venda (R$100,00 neste exemplo).
+valor_impostos: o valor total dos impostos cobrados na venda (R$15,00 neste exemplo).
+itens: uma lista de objetos que representam os itens vendidos nesta venda. Cada objeto contém as seguintes informações:
+produto_id: o ID do produto vendido.
+quantidade: a quantidade de unidades vendidas deste produto.
+preco_unitario: o preço unitário do produto vendido.
+imposto_unitario: o valor unitário dos impostos cobrados sobre este produto.
+json exemplo
+{
+    "valor_total": 100.00,
+    "valor_impostos": 15.00,
+    "itens": [
+        {
+            "produto_id": 2,
+            "quantidade": 1,
+            "preco_unitario": 30.00,
+            "imposto_unitario": 4.50
+        },
+        {
+            "produto_id": 3,
+            "quantidade": 3,
+            "preco_unitario": 12.00,
+            "imposto_unitario": 1.80
+        }
+    ]
+}
+
+Para atualizar uma venda existente:
+PUT /vendas/2
+Essa requisição PUT é utilizada para atualizar uma venda existente na base de dados. O parâmetro "2" na URL representa o identificador único da venda que será atualizada.
+O corpo da requisição é um objeto JSON com as informações atualizadas da venda. Este objeto deve conter os seguintes campos:
+valor_total: um número decimal que representa o valor total atualizado da venda.
+valor_impostos: um número decimal que representa o valor dos impostos atualizado da venda.
+itens: uma lista de objetos JSON contendo os itens atualizados da venda. Cada objeto deve conter os seguintes campos:
+produto_id: um número inteiro que representa o identificador único do produto atualizado associado a este item.
+quantidade: um número inteiro que representa a quantidade atualizada deste produto neste item da venda.
+preco_unitario: um número decimal que representa o preço unitário atualizado deste produto neste item da venda.
+imposto_unitario: um número decimal que representa o valor dos impostos unitário atualizado deste produto neste item da venda.
+json exemplo
+{
+    "valor_total": 100.00,
+    "valor_impostos": 15.00,
+    "itens": [
+        {
+            "produto_id": 2,
+            "quantidade": 1,
+            "preco_unitario": 30.00,
+            "imposto_unitario": 4.50
+        },
+        {
+            "produto_id": 3,
+            "quantidade": 3,
+            "preco_unitario": 12.00,
+            "imposto_unitario": 1.80
+        }
+    ]
+}
+
+Para excluir uma venda existente:
+DELETE /vendas/1
+Essa requisição DELETE é utilizada para excluir uma venda existente na base de dados. O parâmetro "1" na URL representa o identificador único da venda que será excluída.
+Não é necessário enviar um corpo de requisição JSON para esta operação, já que somente o identificador da venda é utilizado para executar a exclusão.
+
+Para buscar um item de venda específico:
+GET /itens_venda/1
+Essa requisição GET é utilizada para buscar um item de venda específico na base de dados. O parâmetro "1" na URL representa o identificador único do item de venda que será buscado.
+A resposta da API deve ser um objeto JSON que representa o item de venda buscado, contendo as seguintes informações:
+"id": um número inteiro que representa o identificador único do item de venda.
+"produto_id": um número inteiro que representa o identificador único do produto associado a este item de venda.
+"venda_id": um número inteiro que representa o identificador único da venda associada a este item de venda.
+"quantidade": um número inteiro que representa a quantidade deste item de venda.
+"preco_unitario": um número decimal que representa o preço unitário deste item de venda.
+"imposto_unitario": um número decimal que representa o valor do imposto unitário deste item de venda.
+json exemplo
+{
+    "id": 10,
+    "produto_id": 4,
+    "venda_id": 2,
+    "quantidade": 2,
+    "preco_unitario": "20.00",
+    "imposto_unitario": "2.00"
+}
+
+Para buscar itens de uma venda específica:
+GET /itens_venda_venda_id/1
+Essa requisição GET é utilizada para buscar todos os itens de uma venda específica na base de dados. O parâmetro "1" na URL representa o identificador único da venda da qual se deseja buscar os itens. A resposta da requisição é um array de objetos JSON, onde cada objeto representa um item da venda e possui as seguintes informações:
+"id": um número inteiro que representa o identificador único do item da venda.
+"produto_id": um número inteiro que representa o identificador único do produto vendido neste item.
+"venda_id": um número inteiro que representa o identificador único da venda a que este item pertence.
+"quantidade": um número inteiro que representa a quantidade vendida deste produto neste item.
+"preco_unitario": um número decimal que representa o preço unitário deste produto neste item.
+"imposto_unitario": um número decimal que representa o valor unitário dos impostos deste produto neste item.
+json exemplo
+[
+    {
+        "id": 6,
+        "produto_id": 2,
+        "venda_id": 2,
+        "quantidade": 1,
+        "preco_unitario": "3499.99",
+        "imposto_unitario": "349.99"
+    },
+    {
+        "id": 7,
+        "produto_id": 4,
+        "venda_id": 2,
+        "quantidade": 2,
+        "preco_unitario": "99.99",
+        "imposto_unitario": "5.00"
+    }
+]
+
+Para inserir um novo item de venda por id da venda:
+POST /itens_venda/2
+{
+    "produto_id": 4,
+    "quantidade": 1,
+    "preco_unitario": 50.00,
+    "imposto_unitario": 7.50
+}
+
+Para atualizar um item de venda existente pelo seu id:
+PUT /itens_venda/2
+Esta requisição POST é utilizada para inserir um novo item de venda em uma venda específica identificada pelo seu ID. O parâmetro "2" na URL representa o identificador único da venda na qual o novo item de venda será adicionado. O corpo da requisição é um objeto JSON com as informações do novo item de venda:
+"produto_id": um número inteiro que representa o identificador único do produto associado a este item de venda.
+"quantidade": um número inteiro que representa a quantidade do produto vendido neste item.
+"preco_unitario": um número decimal que representa o preço unitário do produto vendido neste item.
+"imposto_unitario": um número decimal que representa o valor de imposto unitário do produto vendido neste item.
+json exemplo
+{
+    "produto_id": 5,
+    "quantidade": 2,
+    "preco_unitario": 35.00,
+    "imposto_unitario": 5.25
+}
+
+Para excluir um item de venda existente pelo seu id:
+DELETE /itens_venda/1
+Essa requisição DELETE é utilizada para excluir um item de venda existente na base de dados pelo seu identificador único. O parâmetro "1" na URL representa o identificador único do item de venda que será excluído.
+
+Para excluir um itens de venda existente pelo id da venda:
+DELETE /itens_venda_venda_id/1
+Essa requisição DELETE é utilizada para excluir todos os itens de venda existentes para uma venda específica, identificada pelo parâmetro "1" na URL que representa o identificador único da venda. Isso removerá todos os itens de venda associados a essa venda na base de dados.
