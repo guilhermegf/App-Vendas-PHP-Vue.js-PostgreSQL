@@ -10,9 +10,13 @@
         <label for="descricao">Descrição: </label>
         <textarea class="form-control" id="descricao" v-model="produto.descricao"></textarea>
       </div>
+      <div class="form-group">
+        <label for="marca">Marca: </label>
+        <textarea class="form-control" id="marca" v-model="produto.marca"></textarea>
+      </div>
        <div class="form-group">
         <label for="preco">Preço (R$): </label>
-        <input type="text" id="preco" v-model="produto.preco" required class="form-control"> 
+        <input type="text" id="preco" v-model.trim="produto.preco" required class="form-control">
       </div>
       <div class="form-group">
         <label for="quantidade">Quantidade: </label>
@@ -39,6 +43,7 @@ export default {
       produto: {
         nome: '',
         descricao: '',
+        marca: '',
         preco: '',
         quantidade_estoque:'',
         tipo: null,
@@ -48,6 +53,11 @@ export default {
   },
   mounted() {
     this.carregarTipos();
+  },
+  computed: {
+    preco() {
+      return parseFloat(this.produto.preco.replace(',', '.'));
+    }
   },
   methods: {
     carregarTipos() {
@@ -59,7 +69,8 @@ export default {
       const produto = {
         nome: this.produto.nome,
         descricao: this.produto.descricao,
-        preco: this.produto.preco,
+        marca: this.produto.marca,
+        preco: this.preco,
         quantidade_estoque: this.produto.quantidade,
         tipo_id: this.produto.tipo
       };
