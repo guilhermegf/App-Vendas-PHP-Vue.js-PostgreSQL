@@ -9,7 +9,8 @@
           <th>ID</th>
           <th>Nome</th>
           <th>Descrição</th>
-          <th>Preço (R$)</th>
+          <th>Marca</th>
+          <th>Preço (R$)</th>          
           <th>Quantidade em Estoque</th>
           <th>Tipo de Produto</th>
           <th>Ações</th>
@@ -20,6 +21,7 @@
           <td>{{ produto.id }}</td>
           <td>{{ produto.nome }}</td>
           <td>{{ produto.descricao }}</td>
+          <td>{{ produto.marca }}</td>
           <td>{{ produto.preco.toString().replace('.', ',') }}</td>
           <td>{{ produto.quantidade_estoque }}</td>
           <td>{{ produto.nome_tipo_produto }}</td>

@@ -10,6 +10,10 @@
         <textarea class="form-control" id="descricao" v-model="produto.descricao"></textarea>
       </div>
       <div class="form-group">
+        <label for="marca">Marca:</label>
+        <input type="text" id="marca" v-model="produto.marca" required class="form-control">
+      </div>
+      <div class="form-group">
         <label for="preco" class="form-control">Preço:</label>
         <input type="number" step="0.01" id="preco" v-model="produto.preco" required class="form-control">
       </div>
