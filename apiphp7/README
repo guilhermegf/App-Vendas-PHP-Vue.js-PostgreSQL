@@ -174,13 +174,17 @@ Essa requisição POST é utilizada para inserir um novo produto na base de dado
 "nome": uma string com o nome do produto.
 "descricao": uma string com uma descrição breve do produto.
 "preco": um número decimal que representa o preço do produto.
+"marca": uma string com a marca do produto.
+"quantidade_estoque": um número decila que representa a quantidade em estoque do produto.
 "tipo_id": um número inteiro que representa o identificador único do tipo de produto associado a este produto.
 json exemplo
 {
-    "nome": "Notebook",
+    "nome": "Memória RAM",
     "descricao": "Notebook Dell XPS 13",
     "preco": 6999.99,
-    "tipo_id": 1
+    "marca": "dell2",
+    "tipo_id": 1,
+    "quantidade_estoque": 10
 }
 
 Para atualizar um produto existente:
