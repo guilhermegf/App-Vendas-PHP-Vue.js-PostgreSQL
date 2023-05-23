@@ -40,6 +40,9 @@ possível remover produtos ainda não utilizados em alguma venda.
 - Vendas
 Cadastro das vendas, com opção para adicionar ou visualizar.
 
+Licença
+Este projeto está licenciado sob a licença Creative Commons Attribution 4.0 International.
+
 
 
 
