@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     async carregarProdutos() {
-      const response = await fetch('http://localhost:8000/produtos');
+      const response = await fetch('https://apiwebsenac21.azurewebsites.net/produtos');
       const produtos = await response.json();
       this.produtos = produtos;
     },
@@ -99,7 +99,7 @@ export default {
       }));
       const valor_total = this.totalPrecoCarrinho;
       const valor_impostos = this.totalImpostoCarrinho;
-      const response = await fetch('http://localhost:8000/vendas', {
+      const response = await fetch('https://apiwebsenac21.azurewebsites.net/vendas', {
         method: 'POST',
         body: JSON.stringify({
           valor_total,
