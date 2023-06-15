@@ -47,17 +47,17 @@ export default {
   },
   created() {
     const produto_id = this.$route.params.id;
-    axios.get(`http://localhost:8000/produtos/${produto_id}`).then(response => {
+    axios.get(`https://apiwebsenac21.azurewebsites.net/produtos/${produto_id}`).then(response => {
       this.produto = response.data;
     });
-    axios.get('http://localhost:8000/tipos_produto').then(response => {
+    axios.get('https://apiwebsenac21.azurewebsites.net/tipos_produto').then(response => {
       this.tipos_produto = response.data;
     });
   },
   methods: {
     salvarProduto() {
       const produto_id = this.$route.params.id;
-      axios.put(`http://localhost:8000/produtos/${produto_id}`, this.produto).then(() => {
+      axios.put(`https://apiwebsenac21.azurewebsites.net/produtos/${produto_id}`, this.produto).then(() => {
         this.$router.push({ name: 'produtos-list' });
       });
     }
