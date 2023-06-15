@@ -44,12 +44,12 @@ export default {
     };
   },
   created() {
-    axios.get('http://localhost:8000/produtos').then(response => {
+    axios.get('https://apiwebsenac21.azurewebsites.net/produtos').then(response => {
       //console.log(response.data);
       this.produtos = response.data;
       // Verifica se há itens venda para cada produto e adiciona a propriedade 'temItensVenda'
       this.produtos.forEach(produto => {
-        axios.get(`http://localhost:8000/temitensvenda/${produto.id}`).then(response => {
+        axios.get(`https://apiwebsenac21.azurewebsites.net/temitensvenda/${produto.id}`).then(response => {
           produto.temItensVenda = response.data.length > 0;
         });
       });
@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     deleteProduto(id) {
-      axios.delete(`http://localhost:8000/produtos/${id}`).then(() => {
+      axios.delete(`https://apiwebsenac21.azurewebsites.net/produtos/${id}`).then(() => {
         // Atualiza a lista de produtos
         this.produtos = this.produtos.filter(produto => produto.id !== id);
       });
