@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     carregarTipos() {
-      axios.get('http://localhost:8000/tipos_produto').then((response) => {
+      axios.get('https://apiwebsenac21.azurewebsites.net/tipos_produto').then((response) => {
         this.tipos = response.data;
       });
     },
@@ -77,7 +77,7 @@ export default {
 
       //console.log(produto);
       
-       axios.post('http://localhost:8000/produtos', produto).then(() => {
+       axios.post('https://apiwebsenac21.azurewebsites.net/produtos', produto).then(() => {
         // Redireciona para a página de listagem de tipos de produto
         this.$router.push({ name: 'produtos-list' });
       });
