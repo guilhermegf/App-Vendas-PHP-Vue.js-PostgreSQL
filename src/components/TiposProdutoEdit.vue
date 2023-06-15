@@ -35,14 +35,14 @@ export default {
   },
   created() {
     const id = this.$route.params.id;
-    axios.get(`http://localhost:8000/tipos_produto/${id}`).then(response => {
+    axios.get(`https://apiwebsenac21.azurewebsites.net/tipos_produto/${id}`).then(response => {
       this.tipo = response.data;
     });
   },
   methods: {
     submitForm() {
       const id = this.tipo.id;
-      axios.put(`http://localhost:8000/tipos_produto/${id}`, this.tipo).then(() => {
+      axios.put(`https://apiwebsenac21.azurewebsites.net/tipos_produto/${id}`, this.tipo).then(() => {
         this.$router.push({ name: 'tipos-produto-list' });
       });
     }
