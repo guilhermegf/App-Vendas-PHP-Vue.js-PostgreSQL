@@ -37,7 +37,7 @@ export default {
   },
   created() {
     const id = this.$route.params.id;
-    axios.get(`http://localhost:8000/vendas/${id}`).then(response => {
+    axios.get(`https://apiwebsenac21.azurewebsites.net/vendas/${id}`).then(response => {
       this.venda = response.data;
     });
   },
