@@ -38,7 +38,7 @@ export default {
     };
   },
   created() {
-    axios.get('http://localhost:8000/tipos_produto').then(response => {
+    axios.get('https://apiwebsenac21.azurewebsites.net/tipos_produto').then(response => {
       this.tipos = response.data;
       // Verifica se há produtos para cada tipo e adiciona a propriedade 'temProdutos'
       this.tipos.forEach(tipo => {
@@ -52,7 +52,7 @@ export default {
     deleteTipo(id) {
       //axios.defaults.xsrfCookieName = 'csrftoken';
       //axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-      axios.delete(`http://localhost:8000/tipos_produto/${id}`).then(() => {
+      axios.delete(`https://apiwebsenac21.azurewebsites.net/tipos_produto/${id}`).then(() => {
         // Atualiza a lista de tipos de produto
         this.tipos = this.tipos.filter(tipo => tipo.id !== id);
       });
