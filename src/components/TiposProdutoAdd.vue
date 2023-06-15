@@ -36,7 +36,7 @@ export default {
         nome: this.nome,
         imposto_percentual: this.imposto_percentual
       };
-      axios.post('http://localhost:8000/tipos_produto', tipo).then(() => {
+      axios.post('https://apiwebsenac21.azurewebsites.net/tipos_produto', tipo).then(() => {
         // Redireciona para a página de listagem de tipos de produto
         this.$router.push({ name: 'tipos-produto-list' });
       });
