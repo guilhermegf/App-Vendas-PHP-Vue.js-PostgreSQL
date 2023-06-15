@@ -35,7 +35,7 @@ export default {
     };
   },
   created() {
-    axios.get('http://localhost:8000/vendas').then(response => {
+    axios.get('https://apiwebsenac21.azurewebsites.net/vendas').then(response => {
       //console.log(response.data);
       this.vendas = response.data;      
     });
